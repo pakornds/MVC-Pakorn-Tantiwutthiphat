@@ -1,0 +1,36 @@
+Link to repo: https://github.com/pakornds/MVC-Pakorn-Tantiwutthiphat
+ทำในข้อที่ 1
+
+Directory files ดังนี้
+Indes.java
+- View
+	app.py
+- Model
+	- data
+		cow_data.csv
+	brown_cow.py
+	cow_milk_model.py
+	cow.py
+	generate_cow.py
+	pink_cow.py
+	white_cow.py
+- Controller
+	cow_milk_controller.py
+
+ไฟล์ main.py เป็นตัวเริ่มโปรแกรม ไปเรียก Control.java
+Control.java เก็บ View.java และ Model.java
+จากนั้นเรียกใช้ทั้งคู่ โดย 
+
+--View--
+Control.java ไปเรียก StartPage.java จาก View.java
+Control.java set event button ให้ StartPage.java และรับ input output ทั้งหมด
+
+--Model--
+Control.java ไปเรียก Model.java ให้ทำงาน
+Model.java จะสร้าง DB (เสมอ) เมื่อเริ่มทำงาน
+
+--control--
+Control.java จะไปเรียก ไฟล์ Mycompiler.java เพิ่อทำการ compile source code
+ใน Mycompiler.java
+    เมื่อมีการกดปุ่มส่ง control จะไป input และแยกส่งให้แต่ละ CompilerType 
+    โดยมีชื่อไฟล์ว่า Type1.java, Type2.java

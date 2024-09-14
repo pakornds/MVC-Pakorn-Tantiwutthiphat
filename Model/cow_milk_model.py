@@ -1,5 +1,4 @@
 import csv
-import random
 from Model.cow import Cow
 from Model.white_cow import WhiteCowMilkCalculator
 from Model.brown_cow import BrownCowMilkCalculator
@@ -8,7 +7,7 @@ from Model.generate_cow import CowGenerator
 
 
 class CowMilkModel:
-    def __init__(self, csv_file="Model\\cow_data.csv"):
+    def __init__(self, csv_file="Model\\data\\cow_data.csv"):
         self.csv_file = csv_file
         self.cows = self._load_cows_from_csv()
 
@@ -49,5 +48,5 @@ class CowMilkModel:
         elif cow.breed == 'brown':
             return BrownCowMilkCalculator.calculate_milk(cow.age_years)
         elif cow.breed == 'pink':
-            return PinkCowMilkCalculator.calculate_milk(cow.total_age_in_months())
+            return PinkCowMilkCalculator.calculate_milk(cow.age_months)
         return 0

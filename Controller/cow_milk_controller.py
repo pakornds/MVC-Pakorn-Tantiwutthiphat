@@ -1,6 +1,3 @@
-from Model.cow_milk_model import CowMilkModel
-
-
 class CowMilkController:
     def __init__(self, view, model):
         self.view = view
@@ -14,7 +11,7 @@ class CowMilkController:
         if cow:
             milk_amount = self.model.calculate_milk(cow)
             milk_type = self._get_milk_type(cow.breed)
-            result_message = f"Cow {cow_id} ({cow.breed}) produced {milk_amount:.2f} liters of {milk_type} milk."
+            result_message = f"Cow {cow_id} ({cow.breed}) produced {milk_amount:.2f} liters of {milk_type}."
             self.view.display_message(result_message)
         else:
             self.view.display_message(f"Cow ID {cow_id} not found.")
