@@ -17,20 +17,23 @@ Indes.java
 - Controller
 	cow_milk_controller.py
 
-ไฟล์ main.py เป็นตัวเริ่มโปรแกรม ไปเรียก Control.java
-Control.java เก็บ View.java และ Model.java
-จากนั้นเรียกใช้ทั้งคู่ โดย 
+ไฟล์ main.py เป็นตัวเริ่มโปรแกรม โดยจะสร้าง layout window ให้สำหรับ GUI
+และเรียก cow_milk_model.py ซึ่งเป็น Model, app.py ซึ่งเป็น View, and cow_milk_controller.py ซึ่งเป็น Controller
+โดยการทำงานแบบ MVC จะเป็น
 
 --View--
-Control.java ไปเรียก StartPage.java จาก View.java
-Control.java set event button ให้ StartPage.java และรับ input output ทั้งหมด
+app.py เชื่อมต่อกับ Controller เพื่อให้คุยกันได้และ
+มีหน้าที่หลักคือการแสดงผลหน้าต่างให้ user (GUI) และคอยรับ input จาก user และตรวจสอบก่อนจะส่งไป Controller เพื่อจัดการต่อ
+และรับคำสั่งจาก Controller เพิ่มเติมให้มีการเปลี่ยนแปลง UI
 
 --Model--
-Control.java ไปเรียก Model.java ให้ทำงาน
-Model.java จะสร้าง DB (เสมอ) เมื่อเริ่มทำงาน
+brown_cow.py, pink_cow.py, and white_cow.py มีหน้าที่ในการคำนวน จำนวนของนมที่วัวตัวนั้นผลิตได้จาก data โดยมีการคำนวนภายในที่ต่างกันซึ่งมี Controller เป็นตัวจัดการส่งข้อมูลมาให้
+generate_cow.py มีหน้าที่ในการสร้างวัวจำลองออกมาและใส่ใน csv file เพื่อให้ cow_milk_model.py สามารถนำไปใช้ต่อเพื่อคำนวน
+cow.py มีหน้าที่เป็น data model ที่เก็บข้อมูลที่จำเป็นของ cow โดยถูก generate_cow.py และ cow_milk_model.py ใช้เพื่อจัดการข้อมูลให้เป็นไปตาม format
+และมีส่วนคำนวนอายุสำหรับการนำไปใช้ในการคิดจำนวนของนม และ Controller มีการใช้ attributes ข้างในเพื่อทำงานต่างๆ
+cow_milk_model.py จะ generate csv file หากไม่มีไฟล์เมื่อเริ่มทำงาน
+ซึ่งมีหน้าที่หลักในการนำ data เข้ามาและคอย locate ID ของวัวซึ่งถูกเรียกจาก Controller เพื่อเลือกวัวที่ถูกต้องในการส่งไปคำนวนนม
 
---control--
-Control.java จะไปเรียก ไฟล์ Mycompiler.java เพิ่อทำการ compile source code
-ใน Mycompiler.java
-    เมื่อมีการกดปุ่มส่ง control จะไป input และแยกส่งให้แต่ละ CompilerType 
-    โดยมีชื่อไฟล์ว่า Type1.java, Type2.java
+--Controller--
+cow_milk_controller.py จัดการ input ของ user ที่เกิดจากการกดปุ่มในส่วนของ view  และเป็นตัวกลางเรียกฟังก์ชันต่างๆ
+จาก Model และนำมาแสดงผลในหน้า View

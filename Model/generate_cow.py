@@ -1,15 +1,16 @@
 import csv
 import random
-from Model.cow import Cow  # Ensure Cow class is correctly defined
+from Model.cow import Cow
 
 
 class CowGenerator:
     def __init__(self, csv_file):
+        """init class"""
         self.csv_file = csv_file
-        self.cows = []  # Initialize an empty list to hold cows
+        self.cows = []
 
     def _save_cows_to_csv(self):
-        """Save cows to a CSV file."""
+        """Save cows to a CSV file"""
         with open(self.csv_file, mode='w', newline='') as csvfile:
             fieldnames = ['cow_id', 'breed', 'age_years', 'age_months']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -23,10 +24,9 @@ class CowGenerator:
                 })
 
     def _generate_random_cows(self):
-        """Generate at least 15 random cow samples and save to CSV."""
+        """"Generate 15 random cow samples and save to CSV"""
         breeds = ['white', 'brown', 'pink']
         while len(self.cows) < 15:
-            # Generate random 8-digit cow ID
             cow_id = str(random.randint(10000000, 99999999))
             breed = random.choice(breeds)
             age_years = random.randint(0, 10)
@@ -34,4 +34,4 @@ class CowGenerator:
             new_cow = Cow(cow_id, breed, age_years, age_months)
             self.cows.append(new_cow)
 
-        self._save_cows_to_csv()  # Save the generated cows to the CSV file
+        self._save_cows_to_csv()

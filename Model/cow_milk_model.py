@@ -8,14 +8,14 @@ from Model.generate_cow import CowGenerator
 
 class CowMilkModel:
     def __init__(self, csv_file="Model\\data\\cow_data.csv"):
+        """init class"""
         self.csv_file = csv_file
         self.cows = self._load_cows_from_csv()
 
-        # Generate cows if less than 15 in the CSV
         if len(self.cows) < 15:
             generator = CowGenerator(self.csv_file)
-            generator._generate_random_cows()  # Generate and save cows
-            self.cows = self._load_cows_from_csv()  # Reload after generating cows
+            generator._generate_random_cows()
+            self.cows = self._load_cows_from_csv()
 
     def _load_cows_from_csv(self):
         """Load cows from a CSV file."""
@@ -30,7 +30,6 @@ class CowMilkModel:
                     age_months = int(row['age_months'])
                     cow_data.append(Cow(cow_id, breed, age_years, age_months))
         except FileNotFoundError:
-            # If the file doesn't exist, return an empty list
             return []
         return cow_data
 

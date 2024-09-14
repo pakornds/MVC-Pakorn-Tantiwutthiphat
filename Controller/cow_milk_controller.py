@@ -1,11 +1,13 @@
 class CowMilkController:
     def __init__(self, view, model):
+        """"init class"""
         self.view = view
         self.model = model
         self.view.set_controller(self)
 
     def submit_cow_id(self, cow_id):
-        # Validate the cow ID (already validated for format in the View)
+        """Find if the cow ID exists in the database or not and send information to Model
+    to get a result and return the result, showing it on the screen with View"""
         cow = self.model.find_cow_by_id(cow_id)
 
         if cow:
@@ -17,6 +19,7 @@ class CowMilkController:
             self.view.display_message(f"Cow ID {cow_id} not found.")
 
     def _get_milk_type(self, breed):
+        """Return the milk type of the current cow"""
         if breed == 'white':
             return "Fresh Milk"
         elif breed == 'brown':
